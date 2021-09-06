@@ -1,0 +1,102 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "autoscaling:DescribeAutoScalingGroups", // 04.autoscaler
+        "autoscaling:UpdateAutoScalingGroup", // 04.autoscaler
+        "autoscaling:DescribeAutoScalingInstances",
+        // "autoscaling:DescribeTags", //04.autoscaler
+        // "autoscaling:DescribeLaunchConfigurations", //04.autoscaler
+        // "autoscaling:SetDesiredCapacity", //04.autoscaler
+        // "autoscaling:TerminateInstanceInAutoScalingGroup", //04.autoscaler
+        // "autoscaling:UpdateAutoScalingGroup", //04.autoscaler
+        "ec2:AttachVolume", // 01.master
+        "ec2:AuthorizeSecurityGroupIngress", // 01.master
+        "ec2:CreateRoute", // 01.master
+        "ec2:CreateSecurityGroup", // 01.master
+        "ec2:CreateTags", // 01.master
+        "ec2:CreateVolume", // 01.master
+        "ec2:DeleteRoute", // 01.master
+        "ec2:DeleteSecurityGroup", // 01.master
+        "ec2:DeleteVolume", // 01.master
+        "ec2:DescribeInstances",  // 01.master, 03.cni, 06.node
+        "ec2:DescribeRouteTables",  // 01.master
+        "ec2:DescribeSecurityGroups",  // 01.master
+        "ec2:DescribeSubnets",  // 01.master
+        "ec2:DescribeVolumes", // 01.master
+        "ec2:DescribeVolumesModifications",
+        "ec2:DescribeVpcs",
+        "ec2:DescribeDhcpOptions",
+        "ec2:DescribeNetworkInterfaces",
+        "ec2:DetachVolume", // 01.master
+        "ec2:ModifyInstanceAttribute", // 01.master
+        "ec2:ModifyVolume",
+        "ec2:RevokeSecurityGroupIngress", // 01.master
+        "ec2:DescribeAccountAttributes",
+        "ec2:DescribeAddresses",
+        "ec2:DescribeInternetGateways",
+        // "ec2:DescribeRegions",  // 01.master, 06.node
+        // "ec2:CreateNetworkInterface", // 03.cni
+        // "ec2:AttachNetworkInterface", // 03.cni
+        // "ec2:DeleteNetworkInterface", // 03.cni
+        // "ec2:DetachNetworkInterface", // 03.cni
+        // "ec2:DescribeNetworkInterfaces", // 03.cni
+        // "ec2:ModifyNetworkInterfaceAttribute", // 03.cni
+        // "ec2:AssignPrivateIpAddresses", // 03.cni
+        // "ecr:GetAuthorizationToken", // 02.ecr
+        // "ecr:BatchCheckLayerAvailability", // 02.ecr
+        // "ecr:GetDownloadUrlForLayer", // 02.ecr
+        // "ecr:GetRepositoryPolicy", // 02.ecr
+        // "ecr:DescribeRepositories", // 02.ecr
+        // "ecr:ListImages", // 02.ecr
+        // "ecr:BatchGetImage", // 02.ecr
+        "elasticloadbalancing:AddTags", // 05. loadbalancing
+        "elasticloadbalancing:ApplySecurityGroupsToLoadBalancer",  // 05. loadbalancing
+        "elasticloadbalancing:AttachLoadBalancerToSubnets", // 05. loadbalancing
+        "elasticloadbalancing:ConfigureHealthCheck", // 05. loadbalancing
+        "elasticloadbalancing:CreateListener", // 05. loadbalancing
+        "elasticloadbalancing:CreateLoadBalancer", // 05. loadbalancing
+        "elasticloadbalancing:CreateLoadBalancerListeners", // 05. loadbalancing
+        "elasticloadbalancing:CreateLoadBalancerPolicy", // 05. loadbalancing
+        "elasticloadbalancing:CreateTargetGroup", // 05. loadbalancing
+        "elasticloadbalancing:DeleteListener", // 05. loadbalancing
+        "elasticloadbalancing:DeleteLoadBalancer", // 05. loadbalancing
+        "elasticloadbalancing:DeleteLoadBalancerListeners", // 05. loadbalancing
+        "elasticloadbalancing:DeleteTargetGroup", // 05. loadbalancing
+        "elasticloadbalancing:DeregisterInstancesFromLoadBalancer", // 05. loadbalancing
+        "elasticloadbalancing:DeregisterTargets", 
+        "elasticloadbalancing:DescribeListeners", // 05. loadbalancing
+        "elasticloadbalancing:DescribeLoadBalancerAttributes", // 05. loadbalancing
+        "elasticloadbalancing:DescribeLoadBalancerPolicies", // 05. loadbalancing
+        "elasticloadbalancing:DescribeLoadBalancers", // 05. loadbalancing
+        "elasticloadbalancing:DescribeTargetGroupAttributes",
+        "elasticloadbalancing:DescribeTargetGroups", // 05. loadbalancing
+        "elasticloadbalancing:DescribeTargetHealth",
+        "elasticloadbalancing:DetachLoadBalancerFromSubnets", // 05. loadbalancing
+        "elasticloadbalancing:ModifyListener", // 05. loadbalancing
+        "elasticloadbalancing:ModifyLoadBalancerAttributes", // 05. loadbalancing
+        "elasticloadbalancing:ModifyTargetGroup", // 05. loadbalancing
+        "elasticloadbalancing:ModifyTargetGroupAttributes",
+        "elasticloadbalancing:RegisterInstancesWithLoadBalancer", // 05. loadbalancing
+        "elasticloadbalancing:RegisterTargets", // 05. loadbalancing
+        "elasticloadbalancing:SetLoadBalancerPoliciesForBackendServer", // 05. loadbalancing
+        "elasticloadbalancing:SetLoadBalancerPoliciesOfListener", // 05. loadbalancing
+        "kms:DescribeKey"
+        // "tag:TagResources" // 03.cni
+      ],
+      "Resource": "*"
+    },
+    {
+      "Effect": "Allow",
+      "Action": "iam:CreateServiceLinkedRole",
+      "Resource": "*",
+      "Condition": {
+        "StringEquals": {
+          "iam:AWSServiceName": "elasticloadbalancing.amazonaws.com"
+        }
+      }
+    }
+  ]
+}
